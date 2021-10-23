@@ -50,28 +50,22 @@ public class Megaman : MonoBehaviour
                 myBody.AddForce(new Vector2(0, jumpforce), ForceMode2D.Impulse);
                 myAnimator.SetTrigger("Jump");
                 Saltando = true;
-                while (Saltando == true)
-                    {
-
-                        if (Input.GetKeyDown(KeyCode.Space) && doblesanto == true && IndicadorCaer == true && Saltando == true)
-                        {
-                            myBody.AddForce(new Vector2(0, jumpforce), ForceMode2D.Impulse);
-                            myAnimator.SetTrigger("Jump");
-                            doblesanto = false;
-
-                        }
-                    }
+              
             }
-            else
-            {
-                Saltando = false;
-            }
-
-            
+               
             doblesanto = true;
         }
        
+        else 
+        {
+            if (Input.GetKeyDown(KeyCode.Space) && doblesanto == true && IndicadorCaer == true && Saltando == true)
+            {
+                myBody.AddForce(new Vector2(0, jumpforce), ForceMode2D.Impulse);
+                myAnimator.SetTrigger("Jump");
+                doblesanto = false;
 
+            }
+        }
 
         
 
