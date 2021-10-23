@@ -23,8 +23,11 @@ public class Megaman : MonoBehaviour
     bool IndicadorCaer;
     bool doblesanto = true;
     bool Saltando=false;
+    bool HaberSaltado=false;
+    bool HaciendoDash=false;
     [SerializeField] float tiempoDash;
     float contador;
+    int casosSalto;
     
     public Vector2 GuardarVelocidad;
     // Start is called before the first frame update
@@ -53,7 +56,12 @@ public class Megaman : MonoBehaviour
         if (myCollider.IsTouchingLayers(LayerMask.GetMask("Ground")) && IndicadorCaer == false)
         {
             if(Time.time >= (contador-1))
-            Saltando = true;
+            {
+                Saltando = true;
+                HaciendoDash = false;
+                myAnimator.SetBool("Dash", false);
+            }
+            
 
             if (Input.GetKeyDown(KeyCode.X) && Time.time >= contador)
             {
@@ -62,11 +70,18 @@ public class Megaman : MonoBehaviour
                 {
                     myBody.AddForce(new Vector2(-DashForce, 0), ForceMode2D.Impulse);
                     Saltando = false;
+                    HaciendoDash = true;
+                    
+                    myAnimator.SetBool("Dash",true);
+
                 }
                 else if (moveRight)
                 {
                     myBody.AddForce(new Vector2(DashForce, 0), ForceMode2D.Impulse);
                     Saltando = false;
+                    HaciendoDash = true;
+                    
+                    myAnimator.SetBool("Dash", true);
                 }
                    
 
@@ -108,6 +123,46 @@ public class Megaman : MonoBehaviour
     }
     void Saltar()
     {
+        /*
+        switch (casosSalto)
+        {
+            case 1:
+                if (myCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
+                {
+
+                    if (Input.GetKeyDown(KeyCode.Space) && Saltando == true)
+                    {
+                        myBody.AddForce(new Vector2(0, jumpforce), ForceMode2D.Impulse);
+                        myAnimator.SetTrigger("Jump");
+                        HaberSaltado = true;
+
+                    }
+
+
+
+
+
+
+                    doblesanto = true;
+                }
+                else
+                {
+                    casosSalto = 2;
+                }
+
+                break;
+            case 2:
+
+
+                break;
+            case 3:
+
+                break;
+        
+
+
+    }
+    */
 
         if (myCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
@@ -116,16 +171,23 @@ public class Megaman : MonoBehaviour
             {
                 myBody.AddForce(new Vector2(0, jumpforce), ForceMode2D.Impulse);
                 myAnimator.SetTrigger("Jump");
-                
+                HaberSaltado = true;
               
             }
+            
+           
+
+            
                
+            
             doblesanto = true;
         }
-       
         else 
         {
-            if (Input.GetKeyDown(KeyCode.Space) && doblesanto == true && IndicadorCaer == true)
+
+            
+
+            if (Input.GetKeyDown(KeyCode.Space) && doblesanto == true && IndicadorCaer == true && Saltando==true)
             {
                 
                 myBody.AddForce(new Vector2(0, jumpforce), ForceMode2D.Impulse);
@@ -135,40 +197,45 @@ public class Megaman : MonoBehaviour
             }
         }
 
+
         
 
     }
     void Correr()
     {
-        
-        float movH = Input.GetAxis("Horizontal");
-
-        Vector2 movimiento = new Vector2(movH * speed * Time.deltaTime, 0);
-        transform.Translate(movimiento);
-
-        if (movH != 0)
+        if (HaciendoDash==false)
         {
+            float movH = Input.GetAxis("Horizontal");
 
-            myAnimator.SetBool("IsRunning", true);
-            if (movH < 0)
+            Vector2 movimiento = new Vector2(movH * speed * Time.deltaTime, 0);
+            transform.Translate(movimiento);
+
+            if (movH != 0)
             {
-                moveleft = true;
-                moveRight = false;
-                transform.localScale = new Vector2(-1, 1);
+
+                myAnimator.SetBool("IsRunning", true);
+                if (movH < 0)
+                {
+                    moveleft = true;
+                    moveRight = false;
+                    transform.localScale = new Vector2(-1, 1);
+                }
+                else
+                {
+                    moveRight = true;
+                    moveleft = false;
+                    transform.localScale = new Vector2(1, 1);
+                }
+
+
             }
             else
             {
-                moveRight = true;
-                moveleft = false;
-                transform.localScale = new Vector2(1, 1);
+                myAnimator.SetBool("IsRunning", false);
             }
-                
-
         }
-        else
-        {
-            myAnimator.SetBool("IsRunning", false);
-        }
+        
+        
     }
     void Caer()
     {
@@ -177,17 +244,19 @@ public class Megaman : MonoBehaviour
         {
             myAnimator.SetBool("IsFalling", true);
             IndicadorCaer = true;
+           
         }
         else
         {
             myAnimator.SetBool("IsFalling", false);
             IndicadorCaer = false;
+            
         }
 
     }
     void shoot()
     {
-        if (Input.GetKey(KeyCode.C))
+        if (Input.GetKey(KeyCode.LeftShift))
         {
             myAnimator.SetLayerWeight(1, 1);
             
