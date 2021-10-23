@@ -1160,7 +1160,10 @@ MonoBehaviour:
   fallingThreshold: -0.7
   disparador: {fileID: 0}
   bala: {fileID: 0}
-  fireRate: 0
+  fireRate: 1
+  DashForce: 15
+  tiempoDash: 2
+  GuardarVelocidad: {x: 0, y: 0}
 --- !u!61 &757982352
 BoxCollider2D:
   m_ObjectHideFlags: 0
