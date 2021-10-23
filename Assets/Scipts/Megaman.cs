@@ -25,6 +25,8 @@ public class Megaman : MonoBehaviour
     bool Saltando=false;
     bool HaberSaltado=false;
     bool HaciendoDash=false;
+    float LayerTimer;
+    [SerializeField] float Delay;
     [SerializeField] float tiempoDash;
     float contador;
     int casosSalto;
@@ -68,7 +70,7 @@ public class Megaman : MonoBehaviour
                 
                 if (moveLeft)
                 {
-                    myBody.AddForce(new Vector2(-DashForce, 0), ForceMode2D.Impulse);
+                    myBody.AddForce(new Vector2(DashForce, 0), ForceMode2D.Impulse);
                     Saltando = false;
                     HaciendoDash = true;
                     
@@ -77,7 +79,7 @@ public class Megaman : MonoBehaviour
                 }
                 else if (moveRight)
                 {
-                    myBody.AddForce(new Vector2(DashForce, 0), ForceMode2D.Impulse);
+                    myBody.AddForce(new Vector2(-DashForce, 0), ForceMode2D.Impulse);
                     Saltando = false;
                     HaciendoDash = true;
                     
@@ -206,6 +208,38 @@ public class Megaman : MonoBehaviour
         if (HaciendoDash==false)
         {
             float movH = Input.GetAxis("Horizontal");
+ 
+            //PERSONAJE MIRANDO A LA DERECHA
+            if (movH > 0.1f)
+            {
+                Vector2 movimiento = new Vector2(movH * Time.deltaTime * speed, 0);
+                transform.eulerAngles = new Vector3(0, 0, 0);
+                transform.Translate(movimiento);
+                moveLeft = true;
+                moveRight = false;
+                myAnimator.SetBool("IsRunning", true);
+            }
+
+            //PERSONAJE MIRANDO A LA IZQUIERDA
+            if (movH < -0.1f)
+            {
+                Vector2 movimiento = new Vector2(-movH * Time.deltaTime * speed, 0);
+                transform.eulerAngles = new Vector3(0, 180, 0);
+                transform.Translate(movimiento);
+                moveRight = true;
+                moveLeft = false;
+                myAnimator.SetBool("IsRunning", true);
+            }
+
+            //PERSONAJE QUIETO
+            if (movH == 0)
+            {
+                Vector2 movimiento = new Vector2(0f, 0f);
+                transform.Translate(movimiento);
+                myAnimator.SetBool("IsRunning", false);
+            }
+            /*
+            float movH = Input.GetAxis("Horizontal");
 
             Vector2 movimiento = new Vector2(movH * speed * Time.deltaTime, 0);
             transform.Translate(movimiento);
@@ -235,6 +269,7 @@ public class Megaman : MonoBehaviour
             {
                 myAnimator.SetBool("IsRunning", false);
             }
+            */
         }
         
         
@@ -261,10 +296,17 @@ public class Megaman : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift))
         {
             myAnimator.SetLayerWeight(1, 1);
-            
+            LayerTimer = Time.time + Delay;
         }
         else
-            myAnimator.SetLayerWeight(1, 0);
+        {
+                
+            if (Time.time >= LayerTimer)
+            {
+                myAnimator.SetLayerWeight(1, 0);
+            }
+        }
+            
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && Time.time >= nextFire)
         {

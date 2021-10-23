@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    BoxCollider2D myCollider;
     [SerializeField] int puntosDano;
+    [SerializeField] float tiempo;
     private Rigidbody2D MiRigidbody;
+    Animator myAnimator;
     public float speed;
+    float tiempoExplosion;
+    bool choque;
     
 
     // Start is called before the first frame update
     void Start()
     {
         MiRigidbody = GetComponent<Rigidbody2D>();
+        
     }
 
     // Update is called once per frame
@@ -21,7 +27,20 @@ public class Bullet : MonoBehaviour
         
         MiRigidbody.velocity = transform.right * speed;
 
-
+        /*
+        if (Time.time >= tiempoExplosion && choque == true)
+        {
+            Destroy(this.gameObject);
+            choque = false;
+            myAnimator.SetBool("Explosion", false);
+        }
+        if (myCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        {
+            myAnimator.SetBool("Explosion", true);
+            MiRigidbody.velocity = transform.right * 0;
+            tiempoExplosion = Time.time + tiempo;
+        }
+        */
     }
     public int darPuntosDano()
     {
@@ -29,11 +48,11 @@ public class Bullet : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        choque = true;
         GameObject objeto = collision.gameObject;
-
         string etiqueta = objeto.tag;
-
-        Destroy(this.gameObject);
+        myAnimator.SetBool("Explosion", true);
+        
 
     }
 }
