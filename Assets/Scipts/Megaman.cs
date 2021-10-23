@@ -8,18 +8,18 @@ public class Megaman : MonoBehaviour
     [SerializeField] float jumpforce;
     [SerializeField] float fallingThreshold;
     [SerializeField] GameObject disparador;
-    [SerializeField] GameObject bala;
     [SerializeField] float fireRate;
     [SerializeField] float DashForce;
-
+    [SerializeField] GameObject Bala;
+    public Rigidbody2D MiRigidbody;
     float nextFire = 0;
     Animator myAnimator;
     Rigidbody2D myBody;
     BoxCollider2D myCollider;
     int EstadoDash;
 
-    bool moveRight;
-    bool moveleft;
+    public bool moveRight;
+    public bool moveLeft;
     bool IndicadorCaer;
     bool doblesanto = true;
     bool Saltando=false;
@@ -66,7 +66,7 @@ public class Megaman : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.X) && Time.time >= contador)
             {
                 
-                if (moveleft)
+                if (moveLeft)
                 {
                     myBody.AddForce(new Vector2(-DashForce, 0), ForceMode2D.Impulse);
                     Saltando = false;
@@ -216,15 +216,17 @@ public class Megaman : MonoBehaviour
                 myAnimator.SetBool("IsRunning", true);
                 if (movH < 0)
                 {
-                    moveleft = true;
+                    moveLeft = true;
                     moveRight = false;
                     transform.localScale = new Vector2(-1, 1);
+                    
                 }
                 else
                 {
                     moveRight = true;
-                    moveleft = false;
+                    moveLeft = false;
                     transform.localScale = new Vector2(1, 1);
+                    
                 }
 
 
@@ -252,7 +254,7 @@ public class Megaman : MonoBehaviour
             IndicadorCaer = false;
             
         }
-
+         
     }
     void shoot()
     {
@@ -264,9 +266,9 @@ public class Megaman : MonoBehaviour
         else
             myAnimator.SetLayerWeight(1, 0);
 
-        if (Input.GetKey(KeyCode.C) && Time.time >= nextFire)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && Time.time >= nextFire)
         {
-            Instantiate(bala, disparador.transform.position, transform.rotation);
+            Instantiate(Bala, disparador.transform.position, disparador.transform.rotation);
             nextFire = Time.time + fireRate;
         }
     }
