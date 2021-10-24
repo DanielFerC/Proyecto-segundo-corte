@@ -18,7 +18,8 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         MiRigidbody = GetComponent<Rigidbody2D>();
-        
+        myAnimator = GetComponent<Animator>();
+
     }
 
     // Update is called once per frame
@@ -51,8 +52,15 @@ public class Bullet : MonoBehaviour
         choque = true;
         GameObject objeto = collision.gameObject;
         string etiqueta = objeto.tag;
-        myAnimator.SetBool("Explosion", true);
-        
+        //myAnimator.SetBool("Explosion", true);
+        myAnimator.SetTrigger("Explosion");
+        StartCoroutine(KillOnAnimationEnd());
 
+
+    }
+    private IEnumerator KillOnAnimationEnd()
+    {
+        yield return new WaitForSeconds(0.167f);
+        Destroy(this.gameObject);
     }
 }
