@@ -20,16 +20,15 @@ public class Megaman : MonoBehaviour
 
     public bool moveRight;
     public bool moveLeft;
-    bool IndicadorCaer;
-    bool doblesanto = true;
+    bool IndicadorCaer = false;
+    bool doblesanto = false;
     bool Saltando=false;
-    bool HaberSaltado=false;
     bool HaciendoDash=false;
     float LayerTimer;
     [SerializeField] float Delay;
     [SerializeField] float tiempoDash;
     float contador;
-    int casosSalto;
+    //int casosSalto;
     
     public Vector2 GuardarVelocidad;
     // Start is called before the first frame update
@@ -59,7 +58,7 @@ public class Megaman : MonoBehaviour
         {
             if(Time.time >= (contador-1))
             {
-                Saltando = true;
+                //Saltando = true;
                 HaciendoDash = false;
                 myAnimator.SetBool("Dash", false);
             }
@@ -140,11 +139,6 @@ public class Megaman : MonoBehaviour
 
                     }
 
-
-
-
-
-
                     doblesanto = true;
                 }
                 else
@@ -160,8 +154,6 @@ public class Megaman : MonoBehaviour
             case 3:
 
                 break;
-        
-
 
     }
     */
@@ -169,40 +161,31 @@ public class Megaman : MonoBehaviour
         if (myCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
             
-            if (Input.GetKeyDown(KeyCode.Space) && Saltando==true)
+
+            if (Input.GetKeyDown(KeyCode.Space) /*&& Saltando==true*/)
             {
+                
                 myBody.AddForce(new Vector2(0, jumpforce), ForceMode2D.Impulse);
                 myAnimator.SetTrigger("Jump");
-                HaberSaltado = true;
-              
+                doblesanto = true;
+                Saltando = true;
             }
-            
-           
-
-            
-               
-            
-            doblesanto = true;
+   
         }
         else 
         {
-
-            
-
             if (Input.GetKeyDown(KeyCode.Space) && doblesanto == true && IndicadorCaer == true && Saltando==true)
             {
                 
                 myBody.AddForce(new Vector2(0, jumpforce), ForceMode2D.Impulse);
                 myAnimator.SetTrigger("Jump");
                 doblesanto = false;
-                
+                Saltando = false;
             }
         }
 
-
-        
-
     }
+
     void Correr()
     {
         if (HaciendoDash==false)
@@ -281,7 +264,10 @@ public class Megaman : MonoBehaviour
         {
             myAnimator.SetBool("IsFalling", true);
             IndicadorCaer = true;
-           
+            if (Saltando == false) 
+            {
+                doblesanto = false;
+            }
         }
         else
         {
