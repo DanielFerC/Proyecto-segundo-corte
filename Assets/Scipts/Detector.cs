@@ -13,24 +13,24 @@ public class Detector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+      
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("enter trigger");
-        if (collision.gameObject.CompareTag("player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Folloow player");
+            Debug.Log("Follow player");
 
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Debug.Log("enter trigger");
-        if (collision.gameObject.CompareTag("player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Unfolloow player");
+            Debug.Log("Unfollow player");
         }
     }
+
+   
 }

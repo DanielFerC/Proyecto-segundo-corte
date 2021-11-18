@@ -15,16 +15,16 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /* forma 1
-         * if(detector.IsTouchingLayers(LayerMask.GetMask("player")))
+        
+         /*if(Detector.IsTouchingLayers(LayerMask.GetMask("player")))
          {
              Debug.Log("Follow player");
          }
          else 
          {
              Debug.Log("Unfollow Player");
-         }*/
-
+         }
+         */
         /* forma 2
          * if (Vector2.Distance(transform.position, player.transform.position)  < 10) 
         {
@@ -35,7 +35,7 @@ public class Enemy : MonoBehaviour
              Debug.Log("Unfollow Player");
          }*/
 
-        Collider2D chocando = Physics2D.OverlapCircle(transform.position, 5, LayerMask.GetMask("player"));
+        Collider2D chocando = Physics2D.OverlapCircle(transform.position, 3, LayerMask.GetMask("Player"));
 
         if (chocando != null)
         {
@@ -46,7 +46,7 @@ public class Enemy : MonoBehaviour
             Debug.Log("Unfollow Player");
 
         }
-
+        
 
     }
 

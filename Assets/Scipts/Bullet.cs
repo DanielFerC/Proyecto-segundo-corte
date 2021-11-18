@@ -27,6 +27,7 @@ public class Bullet : MonoBehaviour
     {
         
         MiRigidbody.velocity = transform.right * speed;
+        choque = false;
 
         /*
         if (Time.time >= tiempoExplosion && choque == true)
