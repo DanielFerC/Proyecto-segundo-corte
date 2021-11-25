@@ -54,7 +54,7 @@ public class Megaman : MonoBehaviour
     void Dash()
     {
         float movH = Input.GetAxis("Horizontal");
-        if (myCollider.IsTouchingLayers(LayerMask.GetMask("Ground")) && IndicadorCaer == false)
+        if ((InGround()) && IndicadorCaer == false)
         {
             if(Time.time >= (contador-1))
             {
@@ -122,6 +122,41 @@ public class Megaman : MonoBehaviour
     {
 
     }
+
+    bool WallTouchR()
+    {
+        //PENDIENTE LO QUE HIZO EL PROFE DE LA DIRECCION TAMBIEN
+        float movH = Input.GetAxis("Horizontal");
+        RaycastHit2D colision_wallR = Physics2D.Raycast(myCollider.bounds.center, Vector2.right,
+                         myCollider.bounds.extents.x + 0.1f,
+                         LayerMask.GetMask("Ground"));
+        myAnimator.SetBool("IsRunning", false);
+        return colision_wallR.collider != null;
+
+    }
+
+    bool WallTouchL()
+    {
+        //PENDIENTE LO QUE HIZO EL PROFE DE LA DIRECCION TAMBIEN
+        float movH = Input.GetAxis("Horizontal");
+        RaycastHit2D colision_wallL = Physics2D.Raycast(myCollider.bounds.center, Vector2.left,
+                         myCollider.bounds.extents.x + 0.1f,
+                         LayerMask.GetMask("Ground"));
+        myAnimator.SetBool("IsRunning", false);
+        return colision_wallL.collider != null;
+    }
+
+    bool InGround()
+    {
+        //return myCollider.IsTouchingLayers(LayerMask.GetMask("Ground"));
+        RaycastHit2D colision_suelo = Physics2D.Raycast(myCollider.bounds.center,Vector2.down,
+                          myCollider.bounds.extents.y + 0.1f,
+                          LayerMask.GetMask("Ground"));
+        //Debug.Log("Colisionando con piso?" + colision_suelo.collider != null);
+        Debug.DrawRay(myCollider.bounds.center,
+                      Vector2.down * (myCollider.bounds.extents.y + 0.1f), Color.cyan);
+        return colision_suelo.collider != null; 
+    }
     void Saltar()
     {
         /*
@@ -158,7 +193,7 @@ public class Megaman : MonoBehaviour
     }
     */
 
-        if (myCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        if (InGround())
         {
             
 
@@ -193,7 +228,7 @@ public class Megaman : MonoBehaviour
             float movH = Input.GetAxis("Horizontal");
  
             //PERSONAJE MIRANDO A LA DERECHA
-            if (movH > 0.1f)
+            if (movH > 0.1f && !WallTouchR())
             {
                 Vector2 movimiento = new Vector2(movH * Time.deltaTime * speed, 0);
                 transform.eulerAngles = new Vector3(0, 0, 0);
@@ -204,7 +239,7 @@ public class Megaman : MonoBehaviour
             }
 
             //PERSONAJE MIRANDO A LA IZQUIERDA
-            if (movH < -0.1f)
+            if (movH < -0.1f && !WallTouchL())
             {
                 Vector2 movimiento = new Vector2(-movH * Time.deltaTime * speed, 0);
                 transform.eulerAngles = new Vector3(0, 180, 0);
