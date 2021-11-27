@@ -6,6 +6,11 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] CircleCollider2D Detector;
     [SerializeField] GameObject Megaman;
+    [SerializeField] int puntosVida;
+    
+
+
+    public Transform target;
     // Start is called before the first frame update
     void Start()
     {
@@ -55,6 +60,18 @@ public class Enemy : MonoBehaviour
     {
         // forma 2 //Gizmos.DrawLine(transform.position, player.transform.position);
         Gizmos.DrawWireSphere(transform.position, 10);
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Disparo"))
+        {
+            puntosVida--;
+            if (puntosVida <= 0)
+            {
+                (GameObject.Find("GameManager").GetComponent<GameManager>()).DestroyEnemy();
+                Destroy(this.gameObject);
+            }
+        }
     }
 
 }

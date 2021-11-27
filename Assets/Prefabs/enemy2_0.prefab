@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 7825444293722816476}
   m_Layer: 9
   m_Name: enemy2_0
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,8 +30,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7825444293722816477}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.85, y: 9.9, z: 0}
-  m_LocalScale: {x: 1.0652, y: 1.0652, z: 1.0652}
+  m_LocalPosition: {x: -11.7443, y: 10.0057, z: 0}
+  m_LocalScale: {x: 1.223799, y: 1.223799, z: 1.223799}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -98,7 +98,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -118,6 +118,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Detector: {fileID: 7825444293722816448}
   Megaman: {fileID: 6278801749120723566, guid: 93a6f7cbfc2a8404492bd7c484455008, type: 3}
+  puntosVida: 2
 --- !u!114 &7825444293722816450
 MonoBehaviour:
   m_ObjectHideFlags: 0
