@@ -32,6 +32,13 @@ public class Megaman : MonoBehaviour
     
     public Vector2 GuardarVelocidad;
     // Start is called before the first frame update
+
+    public GameObject SonidoSalto;
+    public GameObject SonidoCaida;
+    public GameObject SonidoDisparo;
+    public GameObject SonidoDash;
+    public GameObject SonidoDeath;
+
     void Start()
     {
         myAnimator = GetComponent<Animator>();
@@ -72,7 +79,9 @@ public class Megaman : MonoBehaviour
                     myBody.AddForce(new Vector2(DashForce, 0), ForceMode2D.Impulse);
                     Saltando = false;
                     HaciendoDash = true;
-                    
+
+                    Instantiate(SonidoDash);
+
                     myAnimator.SetBool("Dash",true);
 
                 }
@@ -81,7 +90,9 @@ public class Megaman : MonoBehaviour
                     myBody.AddForce(new Vector2(-DashForce, 0), ForceMode2D.Impulse);
                     Saltando = false;
                     HaciendoDash = true;
-                    
+
+                    Instantiate(SonidoDash);
+
                     myAnimator.SetBool("Dash", true);
                 }
                    
@@ -132,7 +143,7 @@ public class Megaman : MonoBehaviour
                          LayerMask.GetMask("Ground"));
         myAnimator.SetBool("IsRunning", false);
         return colision_wallR.collider != null;
-
+        
     }
 
     bool WallTouchL()
@@ -144,6 +155,7 @@ public class Megaman : MonoBehaviour
                          LayerMask.GetMask("Ground"));
         myAnimator.SetBool("IsRunning", false);
         return colision_wallL.collider != null;
+        
     }
 
     bool InGround()
@@ -155,7 +167,8 @@ public class Megaman : MonoBehaviour
         //Debug.Log("Colisionando con piso?" + colision_suelo.collider != null);
         Debug.DrawRay(myCollider.bounds.center,
                       Vector2.down * (myCollider.bounds.extents.y + 0.1f), Color.cyan);
-        return colision_suelo.collider != null; 
+        return colision_suelo.collider != null;
+        
     }
     void Saltar()
     {
@@ -204,6 +217,7 @@ public class Megaman : MonoBehaviour
                 myAnimator.SetTrigger("Jump");
                 doblesanto = true;
                 Saltando = true;
+                Instantiate(SonidoSalto);
             }
    
         }
@@ -299,6 +313,7 @@ public class Megaman : MonoBehaviour
         {
             myAnimator.SetBool("IsFalling", true);
             IndicadorCaer = true;
+            
             if (Saltando == false) 
             {
                 doblesanto = false;
@@ -333,6 +348,7 @@ public class Megaman : MonoBehaviour
         {
             Instantiate(Bala, disparador.transform.position, disparador.transform.rotation);
             nextFire = Time.time + fireRate;
+            Instantiate(SonidoDisparo);
         }
     }
 }
