@@ -19,21 +19,16 @@ public class EnemyStatic1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Disparar();
     }
     bool DetectarJugador()
     {
-        //return myCollider.IsTouchingLayers(LayerMask.GetMask("Player"));
-        RaycastHit2D colision_player = Physics2D.Raycast(myCollider.bounds.center,Vector2.left,myCollider.bounds.extents.x*10,LayerMask.GetMask("Player"));
+        
+        RaycastHit2D colision_player = Physics2D.Raycast(myCollider.bounds.center,Vector2.left,myCollider.bounds.extents.x*25,LayerMask.GetMask("Player"));
 
-        Debug.DrawRay(myCollider.bounds.center,Vector2.left * (myCollider.bounds.extents.x + 0.1f), Color.cyan);
+        Debug.DrawRay(myCollider.bounds.center,Vector2.left * (myCollider.bounds.extents.x * 25), Color.cyan);
         return colision_player.collider !=null;
-        /*
-        RaycastHit2D colision_suelo = Physics2D.Raycast(myCollider.bounds.center, Vector2.down, myCollider.bounds.extents.y + 0.1f, LayerMask.GetMask("Ground"));
-        //Debug.Log("Colisionando con piso?" + colision_suelo.collider != null);
-        Debug.DrawRay(myCollider.bounds.center,Vector2.down * (myCollider.bounds.extents.y + 0.1f), Color.cyan);
-        return colision_suelo.collider != null;
-        */
+        
     }
     public void Disparar()
     {
