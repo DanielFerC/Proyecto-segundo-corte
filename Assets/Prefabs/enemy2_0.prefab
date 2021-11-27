@@ -119,6 +119,7 @@ MonoBehaviour:
   Detector: {fileID: 7825444293722816448}
   Megaman: {fileID: 6278801749120723566, guid: 93a6f7cbfc2a8404492bd7c484455008, type: 3}
   puntosVida: 2
+  target: {fileID: 0}
 --- !u!114 &7825444293722816450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,3 +198,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   target: {fileID: 6278801749120723560, guid: 93a6f7cbfc2a8404492bd7c484455008, type: 3}
+  Detector: {fileID: 0}

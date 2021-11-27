@@ -45,11 +45,11 @@ public class Enemy : MonoBehaviour
         if (chocando != null)
         {
             
-            Debug.Log("Follow player");
+            
         }
         else
         {
-            Debug.Log("Unfollow Player");
+           
 
         }
         

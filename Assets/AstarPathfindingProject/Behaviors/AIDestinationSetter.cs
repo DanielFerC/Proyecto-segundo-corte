@@ -1,4 +1,4 @@
-using UnityEngine;
+	using UnityEngine;
 using System.Collections;
 
 namespace Pathfinding {
@@ -32,8 +32,23 @@ namespace Pathfinding {
 		}
 
 		/// <summary>Updates the AI's destination every frame</summary>
-		void Update () {
-			if (target != null && ai != null) ai.destination = target.position;
+		[SerializeField] CircleCollider2D Detector;
+
+		/// <summary>Updates the AI's destination every frame</summary>
+		void Update()
+		{
+			Collider2D chocando = Physics2D.OverlapCircle(transform.position, 10, LayerMask.GetMask("Player"));
+			if (chocando != null)
+			{
+				if (target != null && ai != null) ai.destination = target.position;
+				Debug.Log("Follow player");
+			}
+			else
+			{
+
+				Debug.Log("Unfollow Player");
+			}
 		}
+
 	}
 }

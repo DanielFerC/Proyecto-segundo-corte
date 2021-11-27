@@ -20,7 +20,7 @@ public class Detector : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Follow player");
+            
 
         }
     }
@@ -28,7 +28,7 @@ public class Detector : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Unfollow player");
+            
         }
     }
 

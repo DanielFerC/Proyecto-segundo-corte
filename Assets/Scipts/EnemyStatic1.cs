@@ -6,10 +6,14 @@ public class EnemyStatic1 : MonoBehaviour
 {
     [SerializeField] int puntosVida;
     BoxCollider2D myCollider;
+    Rigidbody2D myBody;
+    Animator myAnimator;
     // Start is called before the first frame update
     void Start()
     {
-        
+        myAnimator = GetComponent<Animator>();
+        myBody = GetComponent<Rigidbody2D>();
+        myCollider = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -22,7 +26,7 @@ public class EnemyStatic1 : MonoBehaviour
         //return myCollider.IsTouchingLayers(LayerMask.GetMask("Player"));
         RaycastHit2D colision_player = Physics2D.Raycast(myCollider.bounds.center,Vector2.left,myCollider.bounds.extents.x*10,LayerMask.GetMask("Player"));
 
-        Debug.DrawRay(myCollider.bounds.center, Vector2.left, Color.green);
+        Debug.DrawRay(myCollider.bounds.center,Vector2.left * (myCollider.bounds.extents.x + 0.1f), Color.cyan);
         return colision_player.collider !=null;
         /*
         RaycastHit2D colision_suelo = Physics2D.Raycast(myCollider.bounds.center, Vector2.down, myCollider.bounds.extents.y + 0.1f, LayerMask.GetMask("Ground"));
