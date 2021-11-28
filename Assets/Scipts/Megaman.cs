@@ -371,8 +371,9 @@ public class Megaman : MonoBehaviour
     }
     private IEnumerator SonidoDerrota()
     {
-        yield return new WaitForSeconds(0.65f);
         Instantiate(SonidoMuerte);
+        yield return new WaitForSeconds(0.65f);
+        
         
     }
 
