@@ -33,40 +33,56 @@ public class EnemyStatic2 : MonoBehaviour
     bool DetectarJugadorR()
     {
 
-        RaycastHit2D colision_playerR = Physics2D.Raycast(myCollider.bounds.center, Vector2.right, myCollider.bounds.extents.x * 25, LayerMask.GetMask("Player"));
-        Debug.DrawRay(myCollider.bounds.center, Vector2.right * (myCollider.bounds.extents.x * 25), Color.cyan);
+        RaycastHit2D colision_playerR = Physics2D.Raycast(myCollider.bounds.center, new Vector2(1,1), myCollider.bounds.extents.x * 25, LayerMask.GetMask("Player"));
+        Debug.DrawRay(myCollider.bounds.center, new Vector2(1, 1) * (myCollider.bounds.extents.x * 25), Color.cyan);
         return colision_playerR.collider != null;
 
     }
     bool DetectarJugadorL()
     {
-        RaycastHit2D colision_playerL = Physics2D.Raycast(myCollider.bounds.center, Vector2.left, myCollider.bounds.extents.x * 25, LayerMask.GetMask("Player"));
-        Debug.DrawRay(myCollider.bounds.center, Vector2.left * (myCollider.bounds.extents.x * 25), Color.red);
+        RaycastHit2D colision_playerL = Physics2D.Raycast(myCollider.bounds.center, new Vector2(-1, 1), myCollider.bounds.extents.x * 25, LayerMask.GetMask("Player"));
+        Debug.DrawRay(myCollider.bounds.center, new Vector2(-1, 1) * (myCollider.bounds.extents.x * 25), Color.red);
         return colision_playerL.collider != null;
     }
  public void Disparar()
     {
         if (DetectarJugadorL())
         {
-            transform.eulerAngles = new Vector3(0, 0, 0);
+            
             Debug.Log("jugador detectado");
             if (Time.time >= nextFire)
             {
+                Debug.Log("Disparando");
+                myAnimator.SetBool("Disparando",true);
                 Instantiate(Bala, disparador.transform.position, disparador.transform.rotation);
                 Instantiate(Bala, disparador2.transform.position, disparador2.transform.rotation);
                 nextFire = Time.time + fireRate;
+            }
+            else
+            {
+                myAnimator.SetBool("Disparando", false);
             }
 
         }
         if (DetectarJugadorR())
         {
+<<<<<<< Updated upstream
             transform.eulerAngles = new Vector3(0, 180, 0);
+=======
+           
+>>>>>>> Stashed changes
             Debug.Log("jugador detectado");
             if (Time.time >= nextFire)
             {
+                Debug.Log("Disparando");
+                myAnimator.SetBool("Disparando", true);
                 Instantiate(Bala, disparador.transform.position, disparador.transform.rotation);
                 Instantiate(Bala, disparador2.transform.position, disparador2.transform.rotation);
                 nextFire = Time.time + fireRate;
+            }
+            else
+            {
+                myAnimator.SetBool("Disparando", false);
             }
 
         }
