@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] GameObject Megaman;
     [SerializeField] int puntosVida;
 
+    public GameObject SonidoDestrucción;
 
     Animator myAnimator;
     public Transform target;
@@ -82,6 +83,7 @@ public class Enemy : MonoBehaviour
         (GameObject.Find("GameManager").GetComponent<GameManager>()).DestroyEnemy();
         yield return new WaitForSeconds(0.65f);
         Destroy(this.gameObject);
+        Instantiate(SonidoDestrucción);
     }
 
 }

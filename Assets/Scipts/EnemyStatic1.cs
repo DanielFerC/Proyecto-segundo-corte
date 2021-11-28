@@ -15,6 +15,7 @@ public class EnemyStatic1 : MonoBehaviour
     [SerializeField] float fireRate;
     float nextFire=0;
 
+    public GameObject SonidoDestruir;
 
     // Start is called before the first frame update
     void Start()
@@ -92,5 +93,6 @@ public class EnemyStatic1 : MonoBehaviour
         yield return new WaitForSeconds(0.65f);
         Instantiate(Base, disparador.transform.position, disparador.transform.rotation);
         Destroy(this.gameObject);
+        Instantiate(SonidoDestruir);
     }
 }

@@ -120,6 +120,7 @@ MonoBehaviour:
   Detector: {fileID: 7825444293722816448}
   Megaman: {fileID: 6278801749120723566, guid: 93a6f7cbfc2a8404492bd7c484455008, type: 3}
   puntosVida: 2
+  "SonidoDestrucci\xF3n": {fileID: 4281301033625582968, guid: 531489f35212fe54eac0828ca8b3d5e2, type: 3}
   target: {fileID: 0}
 --- !u!114 &7825444293722816450
 MonoBehaviour:

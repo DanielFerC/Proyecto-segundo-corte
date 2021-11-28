@@ -33,6 +33,14 @@ public class Megaman : MonoBehaviour
     
     public Vector2 GuardarVelocidad;
     // Start is called before the first frame update
+
+
+    public GameObject SonidoSalto;
+    public GameObject SonidoCaida;
+    public GameObject SonidoDash;
+    public GameObject SonidoMuerte;
+    public GameObject SonidoDisparo;
+
     void Start()
     {
         myAnimator = GetComponent<Animator>();
@@ -75,6 +83,7 @@ public class Megaman : MonoBehaviour
                     HaciendoDash = true;
                     
                     myAnimator.SetBool("Dash",true);
+                    Instantiate(SonidoDash);
 
                 }
                 else if (moveRight)
@@ -84,6 +93,7 @@ public class Megaman : MonoBehaviour
                     HaciendoDash = true;
                     
                     myAnimator.SetBool("Dash", true);
+                    Instantiate(SonidoDash);
                 }
                    
 
@@ -205,6 +215,7 @@ public class Megaman : MonoBehaviour
                 myAnimator.SetTrigger("Jump");
                 doblesanto = true;
                 Saltando = true;
+                Instantiate(SonidoSalto);
             }
    
         }
@@ -217,6 +228,8 @@ public class Megaman : MonoBehaviour
                 myAnimator.SetTrigger("Jump");
                 doblesanto = false;
                 Saltando = false;
+                Instantiate(SonidoSalto);
+
             }
         }
 
@@ -334,6 +347,7 @@ public class Megaman : MonoBehaviour
         {
             Instantiate(Bala, disparador.transform.position, disparador.transform.rotation);
             nextFire = Time.time + fireRate;
+            Instantiate(SonidoDisparo);
         }
         
     }
