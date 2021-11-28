@@ -11,6 +11,7 @@ public class Megaman : MonoBehaviour
     [SerializeField] float fireRate;
     [SerializeField] float DashForce;
     [SerializeField] GameObject Bala;
+    [SerializeField] int Salud;
     public Rigidbody2D MiRigidbody;
     float nextFire = 0;
     Animator myAnimator;
@@ -334,5 +335,15 @@ public class Megaman : MonoBehaviour
             Instantiate(Bala, disparador.transform.position, disparador.transform.rotation);
             nextFire = Time.time + fireRate;
         }
+        
     }
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Salud--;
+            (GameObject.Find("GameManager").GetComponent<GameManager>()).MenuDerrota();
+        }
+    }
+
 }

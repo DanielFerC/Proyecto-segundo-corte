@@ -11,6 +11,7 @@ public class EnemyStatic1 : MonoBehaviour
     Animator myAnimator;
     [SerializeField] GameObject Bala;
     [SerializeField] GameObject disparador;
+    [SerializeField] GameObject Base;
     [SerializeField] float fireRate;
     float nextFire=0;
 
@@ -75,11 +76,21 @@ public class EnemyStatic1 : MonoBehaviour
         if (collision.gameObject.CompareTag("Disparo"))
         {
             puntosVida--;
-            if (puntosVida <= 0)
+            if (puntosVida == 0)
             {
-                (GameObject.Find("GameManager").GetComponent<GameManager>()).DestroyEnemy();
-                Destroy(this.gameObject);
+                Debug.Log("se murio");
+
+                myAnimator.SetTrigger("Moricion");
+                StartCoroutine(Kill());
+
             }
         }
+    }
+    private IEnumerator Kill()
+    {
+        (GameObject.Find("GameManager").GetComponent<GameManager>()).DestroyEnemy();
+        yield return new WaitForSeconds(0.65f);
+        Instantiate(Base, disparador.transform.position, disparador.transform.rotation);
+        Destroy(this.gameObject);
     }
 }

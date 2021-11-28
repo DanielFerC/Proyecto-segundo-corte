@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] int numeroEnemigos;
     [SerializeField] GameObject GameOverMenu;
     [SerializeField] Text Enemigos;
+    [SerializeField] GameObject Derrota;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,5 +40,10 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(0);
         Time.timeScale = 1;
+    }
+    public void MenuDerrota()
+    {
+        Time.timeScale = 0;
+        Derrota.SetActive(true);
     }
 }
