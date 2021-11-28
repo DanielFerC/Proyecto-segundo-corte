@@ -60,7 +60,7 @@ public class EnemyStatic2 : MonoBehaviour
         }
         if (DetectarJugadorR())
         {
-            transform.eulerAngles = new Vector3(0, 180, 0);
+            transform.eulerAngles = new Vector3(0, 0, 0);
             Debug.Log("jugador detectado");
             if (Time.time >= nextFire)
             {

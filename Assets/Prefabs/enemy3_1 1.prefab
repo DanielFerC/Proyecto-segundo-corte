@@ -187,7 +187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   puntosVida: 3
-  Bala: {fileID: 2284969151955028148, guid: b48a25034b73bee408c42c030de6a3ba, type: 3}
+  Bala: {fileID: 6908235133469199229, guid: 0a0401386d3eef44aa2d3bcf56dea4e3, type: 3}
   disparador: {fileID: 2906109683540349805}
   disparador2: {fileID: 5978655455916546170}
   Base: {fileID: 0}
