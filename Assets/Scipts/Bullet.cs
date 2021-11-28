@@ -53,7 +53,7 @@ public class Bullet : MonoBehaviour
         choque = true;
         GameObject objeto = collision.gameObject;
         string etiqueta = objeto.tag;
-        //myAnimator.SetBool("Explosion", true);
+        
         myAnimator.SetTrigger("Explosion");
         StartCoroutine(KillOnAnimationEnd());
 
