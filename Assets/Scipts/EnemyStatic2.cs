@@ -10,6 +10,7 @@ public class EnemyStatic2 : MonoBehaviour
     Animator myAnimator;
     [SerializeField] GameObject Bala;
     [SerializeField] GameObject disparador;
+    [SerializeField] GameObject disparador2;
     [SerializeField] GameObject Base;
     [SerializeField] float fireRate;
     float nextFire = 0;
@@ -26,8 +27,8 @@ public class EnemyStatic2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        DispararR();
-        DispararL();
+        
+        Disparar();
     }
     bool DetectarJugadorR()
     {
@@ -43,20 +44,7 @@ public class EnemyStatic2 : MonoBehaviour
         Debug.DrawRay(myCollider.bounds.center, Vector2.left * (myCollider.bounds.extents.x * 25), Color.red);
         return colision_playerL.collider != null;
     }
-    public void DispararR()
-    {
-        if (DetectarJugadorR())
-        {
-            transform.eulerAngles = new Vector3(0, 180, 0);
-            Debug.Log("jugador detectado");
-            if (Time.time >= nextFire)
-            {
-                Instantiate(Bala, disparador.transform.position, disparador.transform.rotation);
-                nextFire = Time.time + fireRate;
-            }
-        }
-    }
-    public void DispararL()
+ public void Disparar()
     {
         if (DetectarJugadorL())
         {
@@ -65,6 +53,19 @@ public class EnemyStatic2 : MonoBehaviour
             if (Time.time >= nextFire)
             {
                 Instantiate(Bala, disparador.transform.position, disparador.transform.rotation);
+                Instantiate(Bala, disparador2.transform.position, disparador2.transform.rotation);
+                nextFire = Time.time + fireRate;
+            }
+
+        }
+        if (DetectarJugadorR())
+        {
+            transform.eulerAngles = new Vector3(0, 0, 0);
+            Debug.Log("jugador detectado");
+            if (Time.time >= nextFire)
+            {
+                Instantiate(Bala, disparador.transform.position, disparador.transform.rotation);
+                Instantiate(Bala, disparador2.transform.position, disparador2.transform.rotation);
                 nextFire = Time.time + fireRate;
             }
 
@@ -89,7 +90,6 @@ public class EnemyStatic2 : MonoBehaviour
     {
         (GameObject.Find("GameManager").GetComponent<GameManager>()).DestroyEnemy();
         yield return new WaitForSeconds(0.65f);
-        Instantiate(Base, disparador.transform.position, disparador.transform.rotation);
         Destroy(this.gameObject);
     }
 }
