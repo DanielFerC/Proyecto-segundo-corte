@@ -761,6 +761,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2906109683540349805, guid: 5b697785b6e77eb49aefadf8f720e101, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 3265466609989409498, guid: 5b697785b6e77eb49aefadf8f720e101, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -809,7 +813,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: enemy3_1 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5374676455704156382, guid: 5b697785b6e77eb49aefadf8f720e101, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5b697785b6e77eb49aefadf8f720e101, type: 3}
 --- !u!1 &420063310
 GameObject:
@@ -2208,6 +2213,29 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &837738527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 837738521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38bcd800727f7004ba0411ab533ae885, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  puntosVida: 3
+  Bala: {fileID: 2284969151955028148, guid: b48a25034b73bee408c42c030de6a3ba, type: 3}
+  disparador: {fileID: 1183721742}
+  Base: {fileID: 0}
+  fireRate: 1
+  SonidoDestruir: {fileID: 0}
+--- !u!1 &1183721742 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2906109683540349805, guid: 5b697785b6e77eb49aefadf8f720e101, type: 3}
+  m_PrefabInstance: {fileID: 390976198}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1254010457
 PrefabInstance:
   m_ObjectHideFlags: 0
