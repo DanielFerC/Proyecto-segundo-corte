@@ -70,6 +70,8 @@ public class Enemy : MonoBehaviour
             {
                 (GameObject.Find("GameManager").GetComponent<GameManager>()).DestroyEnemy();
                 Destroy(this.gameObject);
+
+
             }
         }
     }
