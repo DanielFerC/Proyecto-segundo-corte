@@ -83,7 +83,7 @@ public class EnemyStatic1 : MonoBehaviour
 
                 myAnimator.SetTrigger("Moricion");
                 StartCoroutine(Kill());
-
+                Instantiate(SonidoDestruir);
             }
         }
     }
@@ -93,6 +93,6 @@ public class EnemyStatic1 : MonoBehaviour
         yield return new WaitForSeconds(0.65f);
         Instantiate(Base, disparador.transform.position, disparador.transform.rotation);
         Destroy(this.gameObject);
-        Instantiate(SonidoDestruir);
+        
     }
 }

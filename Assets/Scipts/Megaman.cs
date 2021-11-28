@@ -40,6 +40,7 @@ public class Megaman : MonoBehaviour
     public GameObject SonidoDash;
     public GameObject SonidoMuerte;
     public GameObject SonidoDisparo;
+    bool aterrizaje=false;
 
     void Start()
     {
@@ -206,6 +207,12 @@ public class Megaman : MonoBehaviour
 
         if (InGround())
         {
+
+            if (aterrizaje==true)
+            {
+                Instantiate(SonidoCaida);
+                aterrizaje = false;
+            }
             
 
             if (Input.GetKeyDown(KeyCode.Space) /*&& Saltando==true*/)
@@ -231,7 +238,9 @@ public class Megaman : MonoBehaviour
                 Instantiate(SonidoSalto);
 
             }
+            aterrizaje = true;
         }
+
 
     }
 
@@ -357,7 +366,14 @@ public class Megaman : MonoBehaviour
         {
             Salud--;
             (GameObject.Find("GameManager").GetComponent<GameManager>()).MenuDerrota();
+            StartCoroutine(SonidoDerrota());
         }
+    }
+    private IEnumerator SonidoDerrota()
+    {
+        yield return new WaitForSeconds(0.65f);
+        Instantiate(SonidoMuerte);
+        
     }
 
 }

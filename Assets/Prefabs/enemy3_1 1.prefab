@@ -162,6 +162,7 @@ MonoBehaviour:
   disparador2: {fileID: 4198680785063868175}
   Base: {fileID: 7307409920115812978, guid: 436e5807c28fe8d448bfa3537d547f25, type: 3}
   fireRate: 1
+  SonidoDestruir: {fileID: 4281301033625582968, guid: 531489f35212fe54eac0828ca8b3d5e2, type: 3}
 --- !u!95 &4198680786146252965
 Animator:
   serializedVersion: 3

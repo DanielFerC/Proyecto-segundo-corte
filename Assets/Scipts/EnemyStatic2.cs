@@ -15,6 +15,7 @@ public class EnemyStatic2 : MonoBehaviour
     [SerializeField] float fireRate;
     float nextFire = 0;
 
+    public GameObject SonidoDestruir;
 
     // Start is called before the first frame update
     void Start()
@@ -92,7 +93,7 @@ public class EnemyStatic2 : MonoBehaviour
 
                 myAnimator.SetTrigger("Moricion");
                 StartCoroutine(Kill());
-
+                Instantiate(SonidoDestruir);
             }
         }
     }

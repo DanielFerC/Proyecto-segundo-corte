@@ -134,9 +134,9 @@ MonoBehaviour:
   tiempoDash: 2
   GuardarVelocidad: {x: 0, y: 0}
   SonidoSalto: {fileID: 8591154346838592006, guid: 7db51514a5742404481f3fb6cdce1c24, type: 3}
-  SonidoCaida: {fileID: 0}
+  SonidoCaida: {fileID: 9131301758722357535, guid: 7f03245b1643b2f448acc44d1953e47e, type: 3}
   SonidoDash: {fileID: 3758353434312314016, guid: 6f507831077c0264fbf0d8bde1f89307, type: 3}
-  SonidoMuerte: {fileID: 4281301033625582968, guid: 531489f35212fe54eac0828ca8b3d5e2, type: 3}
+  SonidoMuerte: {fileID: 1980404074610914163, guid: 6d2eacdd470bdce49809e73488c9f111, type: 3}
   SonidoDisparo: {fileID: 478001966784161087, guid: 73a23d4cbecd62d48b6763a1e862cd78, type: 3}
 --- !u!50 &6278801749120723572
 Rigidbody2D:
